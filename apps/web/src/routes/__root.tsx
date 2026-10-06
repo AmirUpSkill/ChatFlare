@@ -4,6 +4,18 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import appCss from "../styles.css?url";
 
+const themeScript = `
+  (() => {
+    try {
+      const savedTheme = localStorage.getItem("chatflare-theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const isDark = savedTheme === "dark" || (!savedTheme && prefersDark);
+      document.documentElement.classList.toggle("dark", isDark);
+      document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+    } catch {}
+  })();
+`;
+
 export const Route = createRootRoute({
 	head: () => ({
 		meta: [
@@ -15,7 +27,11 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: "ChatFlare - AI that thinks with you",
+			},
+			{
+				name: "description",
+				content: "A focused AI workspace for clearer thinking and better work.",
 			},
 		],
 		links: [
@@ -30,9 +46,10 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				<HeadContent />
+				<script>{themeScript}</script>
 			</head>
 			<body>
 				{children}
