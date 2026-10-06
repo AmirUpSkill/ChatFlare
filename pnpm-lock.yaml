@@ -168,6 +168,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@chatflare/schemas':
+        specifier: workspace:*
+        version: link:../../packages/schemas
       '@tailwindcss/vite':
         specifier: ^4.1.18
         version: 4.3.3(vite@8.3.2(@types/node@22.20.5)(esbuild@0.28.1)(jiti@2.7.0))
@@ -226,6 +229,16 @@ importers:
       wrangler:
         specifier: ^4.147.0
         version: 4.147.0(@types/node@22.20.5)
+
+  packages/schemas:
+    dependencies:
+      zod:
+        specifier: ^4.1.12
+        version: 4.6.5
+    devDependencies:
+      typescript:
+        specifier: ^6.0.2
+        version: 6.0.3
 
 packages:
 

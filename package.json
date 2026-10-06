@@ -5,6 +5,10 @@
   "scripts": {
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r --if-present lint",
+    "format": "pnpm -r --if-present format",
+    "check": "pnpm -r --if-present check && pnpm typecheck",
+    "cf-typegen": "pnpm --filter web cf-typegen"
   }
 }
